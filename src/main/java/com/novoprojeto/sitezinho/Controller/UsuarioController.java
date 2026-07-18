@@ -76,6 +76,16 @@ public class UsuarioController {
         return "home";
     }
 
+    //rota da página inicial
+    //quando digitar o local host 8080, entra direto no inicio.html
+    @GetMapping("/")
+    public String PaginaInicial()
+    {
+        return "inicio";
+    }
+    
+    
+
 
     //realizar logout
     @GetMapping("/logout")

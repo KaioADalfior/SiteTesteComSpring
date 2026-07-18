@@ -3,18 +3,40 @@
 
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/CssHome.css}">
     <title>Home</title>
 </head>
 
 <body>
-    <a th:href="@{/logout}">Logout</a>
-    <a href="">Meus dados</a>
 
-    <h1>
-        LOGADO COM SUCESSO!
-        Bem vindo
-        <span th:text="${usuario.nome}"></span>
-    </h1>
+    <header class="menu">
+        <a th:href="@{/logout}">Logout</a>
+        <a href="">Meus dados</a>
+    </header>
+
+
+    <div class="container">
+
+        <div class="card">
+
+            <h1>
+                LOGADO COM SUCESSO!
+            </h1>
+
+            <p>
+                Bem vindo,
+                <span th:text="${usuario.nome}"></span>
+            </p>
+
+            <a class="btn" th:href="@{/logout}">
+                Sair
+            </a>
+
+        </div>
+
+    </div>
+
 
 </body>
+
 </html>
