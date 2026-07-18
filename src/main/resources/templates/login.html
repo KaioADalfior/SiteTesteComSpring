@@ -4,51 +4,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Seu Estoquista</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Nunito', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50:  '#fff1ee',
+                            100: '#ffe0d8',
+                            200: '#ffc2b3',
+                            300: '#ff9d85',
+                            400: '#ff6b47',
+                            500: '#ff2d20',
+                            600: '#e0210f',
+                            700: '#b8190b',
+                            800: '#8f150c',
+                            900: '#75140e',
+                        },
+                    },
+                }
+            }
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Mantido para eventuais customizações adicionais do projeto -->
     <link rel="stylesheet" th:href="@{/css/CssLogin.css}">
-    <title>Login</title>
+
+    <style>
+        body { font-family: 'Nunito', ui-sans-serif, system-ui, sans-serif; }
+    </style>
 </head>
 
+<body class="min-h-screen flex items-center justify-center bg-gray-50 px-6 py-10 antialiased">
 
-<body>
-    <div class="formLogin">
-        <form th:action="@{/login}" method="POST">
+    <div class="w-full max-w-md">
 
-            <div class="campo">
-                <label for="email">E-mail:</label>
-                <input 
-                    type="email"
-                    id="email"
-                    name="email"
-                    placeholder="Digite seu e-mail"
-                    required>
-            </div>
+        <!-- Logo / marca -->
+        <div class="flex flex-col items-center mb-8">
+            <span class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-500 text-white font-extrabold text-lg mb-3">SE</span>
+            <span class="text-lg font-extrabold text-gray-900 tracking-tight">Seu Estoquista</span>
+        </div>
 
-            <div class="campo">
+        <div class="formLogin bg-white border border-gray-100 rounded-2xl shadow-sm px-8 py-10">
+            <h2 class="text-xl font-extrabold text-gray-900 mb-1 text-center">Entrar na sua conta</h2>
+            <p class="text-sm text-gray-500 text-center mb-8">Acesse o painel de controle do seu estoque</p>
 
-                <label for="senha">Senha:</label>
-                <input 
-                    type="password"
-                    id="senha"
-                    name="senha"
-                    placeholder="Digite sua senha"
-                    required>
-            </div>
+            <form th:action="@{/login}" method="POST" class="space-y-5">
 
-            <div class="acao">
-                <button type="submit">
-                    Entrar
-                </button>
-            </div>
+                <div class="campo">
+                    <label for="email" class="block text-sm font-semibold text-gray-700 mb-1.5">E-mail:</label>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="Digite seu e-mail"
+                        required
+                        class="w-full rounded-md border border-gray-200 px-4 py-2.5 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-brand-400 focus:border-brand-400 transition-colors">
+                </div>
 
-            <div class="registro">
-                <p>
-                    Ainda não possui conta?
-                    <a th:href="@{/registro}">
-                        Registrar-se
-                    </a>
-                </p>
-            </div>
-        </form>
+                <div class="campo">
+                    <label for="senha" class="block text-sm font-semibold text-gray-700 mb-1.5">Senha:</label>
+                    <input
+                        type="password"
+                        id="senha"
+                        name="senha"
+                        placeholder="Digite sua senha"
+                        required
+                        class="w-full rounded-md border border-gray-200 px-4 py-2.5 text-sm text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-brand-400 focus:border-brand-400 transition-colors">
+                </div>
+
+                <div class="acao pt-2">
+                    <button
+                        type="submit"
+                        class="w-full text-sm font-semibold px-6 py-3 rounded-md bg-brand-500 text-white shadow-sm hover:bg-brand-600 transition-colors">
+                        Entrar
+                    </button>
+                </div>
+
+                <div class="registro pt-2">
+                    <p class="text-center text-sm text-gray-500">
+                        Ainda não possui conta?
+                        <a th:href="@{/registro}" class="font-semibold text-brand-600 hover:text-brand-700 hover:underline">
+                            Registrar-se
+                        </a>
+                    </p>
+                </div>
+            </form>
+        </div>
     </div>
 
     <!-- alert de erro ao logar. -->

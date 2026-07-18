@@ -4,111 +4,187 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meus Dados</title>
+    <title>Meus Dados | Seu Estoquista</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Nunito', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50:  '#fff1ee',
+                            100: '#ffe0d8',
+                            200: '#ffc2b3',
+                            300: '#ff9d85',
+                            400: '#ff6b47',
+                            500: '#ff2d20',
+                            600: '#e0210f',
+                            700: '#b8190b',
+                            800: '#8f150c',
+                            900: '#75140e',
+                        },
+                        ink: {
+                            900: '#14161c',
+                        },
+                    },
+                }
+            }
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        body { font-family: 'Nunito', ui-sans-serif, system-ui, sans-serif; }
+        /* Garante que labels de 1 ou 2 linhas nunca desalinhem os campos da mesma linha */
+        .rotulo { min-height: 2.75rem; display: flex; align-items: flex-end; }
+    </style>
 </head>
 
-<body>
+<body class="min-h-screen flex flex-col bg-gray-50 text-gray-700 antialiased">
 
-<<<<<<< HEAD
-<header>
-    <a th:href="@{/home}">
-        Voltar para Home
-    </a>
-</header>
-
-
-<div>
-
-    <h2>Meus Dados</h2>
-
-
-    <form th:action="@{/meusdados}" method="POST" th:object="${usuario}">
-
-
-        <p>
-            <label>Nome Completo:</label>
-
-            <input 
-                type="text"
-                th:field="*{nome}">
-        </p>
-
-
-        <p>
-            <label>Email:</label>
-
-            <input 
-                type="email"
-                th:field="*{email}">
-        </p>
-
-
-        <p>
-            <label>Telefone:</label>
-
-            <input 
-                type="text"
-                th:field="*{telefone}">
-        </p>
-
-
-        <p>
-
-            <button type="submit">
-                Salvar Alterações
-            </button>
-
-        </p>
-
-
-    </form>
-
-
-</div>
-=======
-    <header>
-        <a th:href="@{/home}">
-            Voltar para Home
-        </a>
+    <header class="menu bg-white border-b border-gray-100">
+        <div class="max-w-6xl mx-auto px-6 sm:px-10 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <span class="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-brand-500 text-white font-extrabold text-sm">SE</span>
+                <span class="text-lg font-extrabold text-gray-900 tracking-tight">Seu Estoquista</span>
+            </div>
+            <a th:href="@{/home}"
+               class="inline-flex items-center gap-1.5 text-sm font-semibold text-gray-500 hover:text-brand-600 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+                Voltar para Home
+            </a>
+        </div>
     </header>
 
+    <div class="container flex-1 w-full max-w-4xl mx-auto px-6 sm:px-10 py-12">
 
-    <div>
+        <!-- Cabeçalho da página -->
+        <div class="pb-7 border-b border-gray-200 mb-2">
+            <span class="text-xs font-bold uppercase tracking-widest text-brand-600">Configurações da conta</span>
+            <h1 class="text-3xl font-extrabold text-ink-900 tracking-tight mt-1">Meus Dados</h1>
+            <p class="text-sm text-gray-500 mt-2">Gerencie suas informações pessoais e a segurança de acesso.</p>
+        </div>
 
-        <h2>Meus Dados</h2>
-
+        <!-- Mensagens de retorno -->
+        <div th:if="${erro}" class="mt-6 flex items-center gap-2 rounded-lg bg-red-50 border border-red-200 text-red-700 text-sm px-4 py-3">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            </svg>
+            <span th:text="${erro}"></span>
+        </div>
+        <div th:if="${sucesso}" class="mt-6 flex items-center gap-2 rounded-lg bg-emerald-50 border border-emerald-200 text-emerald-700 text-sm px-4 py-3">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+            <span th:text="${sucesso}"></span>
+        </div>
 
         <form th:action="@{/meusdados}" method="POST" th:object="${usuario}">
 
+            <!-- Campo oculto necessário para identificar o registro a atualizar,
+                 evitando duplicação de usuário ao salvar -->
             <input type="hidden" th:field="*{id}">
 
-            <p>
-                <label>Nome Completo:</label>
-                <input type="text" th:field="*{nome}">
-            </p>
+            <!-- Seção: Meu perfil -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10 py-9 border-b border-gray-200">
+                <div class="md:col-span-1">
+                    <div class="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-brand-50 text-brand-600 mb-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4.5 w-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                        </svg>
+                    </div>
+                    <h2 class="text-base font-extrabold text-ink-900 mb-1">Meu perfil</h2>
+                    <p class="text-sm text-gray-500 leading-relaxed">
+                        Suas informações pessoais de contato e cadastro.
+                    </p>
+                </div>
 
-            <p>
-                <label>Email:</label>
-                <input type="email" th:field="*{email}">
-            </p>
+                <div class="card md:col-span-2 bg-white border border-gray-100 rounded-2xl shadow-[0_1px_2px_rgba(16,24,40,0.04),0_1px_3px_rgba(16,24,40,0.06)] p-7">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-5 gap-y-6">
 
-            <p>
-                <label>Telefone:</label>
-                <input type="text" th:field="*{telefone}">
-            </p>
+                        <div class="campo">
+                            <label for="nome" class="rotulo text-sm font-semibold text-gray-700">Nome completo</label>
+                            <input type="text" id="nome" th:field="*{nome}"
+                                class="mt-1.5 w-full rounded-lg border border-gray-200 px-4 py-2.5 text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-brand-400/40 focus:border-brand-400 transition-all">
+                        </div>
 
-            <p>
-                <button type="submit">
+                        <div class="campo">
+                            <label for="telefone" class="rotulo text-sm font-semibold text-gray-700">Telefone</label>
+                            <input type="text" id="telefone" th:field="*{telefone}"
+                                class="mt-1.5 w-full rounded-lg border border-gray-200 px-4 py-2.5 text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-brand-400/40 focus:border-brand-400 transition-all">
+                        </div>
+
+                        <div class="campo sm:col-span-2">
+                            <label for="email" class="rotulo text-sm font-semibold text-gray-700">Email</label>
+                            <input type="email" id="email" th:field="*{email}"
+                                class="mt-1.5 w-full rounded-lg border border-gray-200 px-4 py-2.5 text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-brand-400/40 focus:border-brand-400 transition-all">
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Seção: Alterar senha -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10 py-9 border-b border-gray-200">
+                <div class="md:col-span-1">
+                    <div class="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-brand-50 text-brand-600 mb-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4.5 w-4.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                        </svg>
+                    </div>
+                    <h2 class="text-base font-extrabold text-ink-900 mb-1">Alterar senha</h2>
+                    <p class="text-sm text-gray-500 leading-relaxed">
+                        Deixe em branco caso não queira alterá-la.
+                    </p>
+                </div>
+
+                <div class="card md:col-span-2 bg-white border border-gray-100 rounded-2xl shadow-[0_1px_2px_rgba(16,24,40,0.04),0_1px_3px_rgba(16,24,40,0.06)] p-7">
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-x-5 gap-y-6">
+
+                        <div class="campo">
+                            <label for="senhaAtual" class="rotulo text-sm font-semibold text-gray-700">Senha atual</label>
+                            <input type="password" id="senhaAtual" name="senhaAtual"
+                                class="mt-1.5 w-full rounded-lg border border-gray-200 px-4 py-2.5 text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-brand-400/40 focus:border-brand-400 transition-all">
+                        </div>
+
+                        <div class="campo">
+                            <label for="novaSenha" class="rotulo text-sm font-semibold text-gray-700">Nova senha</label>
+                            <input type="password" id="novaSenha" name="novaSenha"
+                                class="mt-1.5 w-full rounded-lg border border-gray-200 px-4 py-2.5 text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-brand-400/40 focus:border-brand-400 transition-all">
+                        </div>
+
+                        <div class="campo">
+                            <label for="confirmarSenha" class="rotulo text-sm font-semibold text-gray-700">Confirme sua nova senha</label>
+                            <input type="password" id="confirmarSenha" name="confirmarSenha"
+                                class="mt-1.5 w-full rounded-lg border border-gray-200 px-4 py-2.5 text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-brand-400/40 focus:border-brand-400 transition-all">
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ação -->
+            <div class="acao flex justify-end pt-8">
+                <button type="submit"
+                    class="btn inline-flex items-center gap-2 text-sm font-semibold px-8 py-3 rounded-lg bg-brand-500 text-white shadow-sm hover:bg-brand-600 hover:shadow-md active:scale-[0.98] transition-all">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
                     Salvar Alterações
                 </button>
-            </p>
+            </div>
 
         </form>
-
-
     </div>
->>>>>>> 8c12d80 (Correção bug de duplicação ao editar)
-
 
 </body>
 
