@@ -11,9 +11,9 @@ body {
     justify-content: center;
     align-items: center;
 }
-.formRegistro {
+.formLogin {
     background-color: #fff;
-    width: 400px;
+    width: 350px;
     padding: 30px;
     border: 1px solid #ddd;
     border-radius: 4px;
@@ -53,4 +53,16 @@ body {
 }
 .acao button:hover {
     background-color: #0069d9;
+}
+.registro {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 14px;
+}
+.registro a {
+    color: #007bff;
+    text-decoration: none;
+}
+.registro a:hover {
+    text-decoration: underline;
 }
