@@ -13,8 +13,6 @@ import java.util.Optional;
 import org.springframework.ui.Model;
 
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
 
 
 //diz ao Spring que este método é um controlador.
@@ -84,6 +82,29 @@ public class UsuarioController {
         return "inicio";
     }
     
+
+    //rota página de meus dados
+    @GetMapping("/meusdados")
+    public String abrirMeusDados(HttpSession sessaoLogado, Model model){
+        Usuario usuario = (Usuario) sessaoLogado.getAttribute("usuarioLogado");
+
+        if(usuario == null){
+            return "redirect:/login";
+        }
+        
+        model.addAttribute("usuario", usuario);
+        return "meusdados";
+    }
+
+    //alterar os dados
+    @PostMapping("/meusdados")
+    public String atualizarMeusDados(Usuario usuario, HttpSession sessao){
+        usuarioRepositorio.save(usuario);
+
+        sessao.setAttribute("usuarioLogado", usuario);
+
+        return "redirect:/meusdados";
+    }
     
 
 

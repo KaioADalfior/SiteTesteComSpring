@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meus Dados</title>
+</head>
+
+<body>
+
+<header>
+    <a th:href="@{/home}">
+        Voltar para Home
+    </a>
+</header>
+
+
+<div>
+
+    <h2>Meus Dados</h2>
+
+
+    <form th:action="@{/meusdados}" method="POST" th:object="${usuario}">
+
+
+        <p>
+            <label>Nome Completo:</label>
+
+            <input 
+                type="text"
+                th:field="*{nome}">
+        </p>
+
+
+        <p>
+            <label>Email:</label>
+
+            <input 
+                type="email"
+                th:field="*{email}">
+        </p>
+
+
+        <p>
+            <label>Telefone:</label>
+
+            <input 
+                type="text"
+                th:field="*{telefone}">
+        </p>
+
+
+        <p>
+
+            <button type="submit">
+                Salvar Alterações
+            </button>
+
+        </p>
+
+
+    </form>
+
+
+</div>
+
+
+</body>
+
+</html>
