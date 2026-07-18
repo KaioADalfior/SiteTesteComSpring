@@ -5,13 +5,19 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
+//@Entity diz ao banco de dados que esta classe representa uma tabela
 @Entity
+
+//public class Usuario = Tabela: Usuario
 public class Usuario {
     
+
+    //id BIGINT PRIMARY KEY
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //dizer ao java que o banco de dados cria automaticamente a chave primária pelo ID;
     private Long id;
 
+    //os atributos abaixo viram colunas
     private String nome;
 
     private String email;
@@ -70,5 +76,4 @@ public class Usuario {
     public void setTelefone(String telefone){
         this.telefone = telefone;
     }
-
 }
