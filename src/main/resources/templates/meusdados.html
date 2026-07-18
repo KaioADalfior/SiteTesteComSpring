@@ -9,6 +9,7 @@
 
 <body>
 
+<<<<<<< HEAD
 <header>
     <a th:href="@{/home}">
         Voltar para Home
@@ -64,6 +65,49 @@
 
 
 </div>
+=======
+    <header>
+        <a th:href="@{/home}">
+            Voltar para Home
+        </a>
+    </header>
+
+
+    <div>
+
+        <h2>Meus Dados</h2>
+
+
+        <form th:action="@{/meusdados}" method="POST" th:object="${usuario}">
+
+            <input type="hidden" th:field="*{id}">
+
+            <p>
+                <label>Nome Completo:</label>
+                <input type="text" th:field="*{nome}">
+            </p>
+
+            <p>
+                <label>Email:</label>
+                <input type="email" th:field="*{email}">
+            </p>
+
+            <p>
+                <label>Telefone:</label>
+                <input type="text" th:field="*{telefone}">
+            </p>
+
+            <p>
+                <button type="submit">
+                    Salvar Alterações
+                </button>
+            </p>
+
+        </form>
+
+
+    </div>
+>>>>>>> 8c12d80 (Correção bug de duplicação ao editar)
 
 
 </body>

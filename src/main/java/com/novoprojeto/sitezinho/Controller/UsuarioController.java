@@ -27,15 +27,22 @@ public class UsuarioController {
     //rota de registro
     @PostMapping("/registro")
     public String salvar(Usuario usuario) {
+<<<<<<< HEAD
 
         usuarioRepositorio.save(usuario);
 
+=======
+        usuarioRepositorio.save(usuario);
+>>>>>>> 8c12d80 (Correção bug de duplicação ao editar)
         return "redirect:/login";
     }
 
     @GetMapping("/registro")
     public String abrirRegistro(Model model) {
+<<<<<<< HEAD
         
+=======
+>>>>>>> 8c12d80 (Correção bug de duplicação ao editar)
         model.addAttribute("usuario", new Usuario());
         return "registro";
     }
@@ -52,10 +59,15 @@ public class UsuarioController {
 
         if(usuario.isPresent()){
             Usuario usuarioBanco = usuario.get();
+<<<<<<< HEAD
 
             if(usuarioBanco.getSenha().equals(senha)){
                 sessaoLogado.setAttribute("usuarioLogado", usuarioBanco);
 
+=======
+            if(usuarioBanco.getSenha().equals(senha)){
+                sessaoLogado.setAttribute("usuarioLogado", usuarioBanco);
+>>>>>>> 8c12d80 (Correção bug de duplicação ao editar)
                 return "redirect:/home";
             }
         }
@@ -69,11 +81,17 @@ public class UsuarioController {
     @GetMapping("/home")
     public String abrirHome(HttpSession sessaoLogado, Model model){
         Usuario usuario = (Usuario) sessaoLogado.getAttribute("usuarioLogado");
+<<<<<<< HEAD
 
         model.addAttribute("usuario", usuario);
         return "home";
     }
 
+=======
+        model.addAttribute("usuario", usuario);
+        return "home";
+    }
+>>>>>>> 8c12d80 (Correção bug de duplicação ao editar)
     //rota da página inicial
     //quando digitar o local host 8080, entra direto no inicio.html
     @GetMapping("/")
@@ -82,7 +100,10 @@ public class UsuarioController {
         return "inicio";
     }
     
+<<<<<<< HEAD
 
+=======
+>>>>>>> 8c12d80 (Correção bug de duplicação ao editar)
     //rota página de meus dados
     @GetMapping("/meusdados")
     public String abrirMeusDados(HttpSession sessaoLogado, Model model){
@@ -91,7 +112,10 @@ public class UsuarioController {
         if(usuario == null){
             return "redirect:/login";
         }
+<<<<<<< HEAD
         
+=======
+>>>>>>> 8c12d80 (Correção bug de duplicação ao editar)
         model.addAttribute("usuario", usuario);
         return "meusdados";
     }
@@ -100,6 +124,7 @@ public class UsuarioController {
     @PostMapping("/meusdados")
     public String atualizarMeusDados(Usuario usuario, HttpSession sessao){
         usuarioRepositorio.save(usuario);
+<<<<<<< HEAD
 
         sessao.setAttribute("usuarioLogado", usuario);
 
@@ -108,11 +133,19 @@ public class UsuarioController {
     
 
 
+=======
+        sessao.setAttribute("usuarioLogado", usuario);
+        return "redirect:/meusdados";
+    }
+>>>>>>> 8c12d80 (Correção bug de duplicação ao editar)
     //realizar logout
     @GetMapping("/logout")
     public String logout(HttpSession sessaoLogout){
         sessaoLogout.invalidate();
+<<<<<<< HEAD
 
+=======
+>>>>>>> 8c12d80 (Correção bug de duplicação ao editar)
         return "redirect:/login";
     }
 }
