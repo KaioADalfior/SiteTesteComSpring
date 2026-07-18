@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.novoprojeto.sitezinho.Model.Usuario;
 import com.novoprojeto.sitezinho.Repositorio.UsuarioRepositorio;
 
+import jakarta.servlet.http.HttpSession;
+
 import java.util.Optional;
 import org.springframework.ui.Model;
 
@@ -47,13 +49,15 @@ public class UsuarioController {
     }
     //realizar login
     @PostMapping("/login")
-    public String realizarLogin(String email, String senha, Model model) {
+    public String realizarLogin(String email, String senha, Model model, HttpSession sessaoLogado) {
         Optional<Usuario> usuario = usuarioRepositorio.findByEmail(email);
 
         if(usuario.isPresent()){
             Usuario usuarioBanco = usuario.get();
 
             if(usuarioBanco.getSenha().equals(senha)){
+                sessaoLogado.setAttribute("usuarioLogado", usuarioBanco);
+
                 return "redirect:/home";
             }
         }
@@ -65,7 +69,10 @@ public class UsuarioController {
     
     //rota de Home
     @GetMapping("/home")
-    public String abrirHome(){
+    public String abrirHome(HttpSession sessaoLogado, Model model){
+        Usuario usuario = (Usuario) sessaoLogado.getAttribute("usuarioLogado");
+
+        model.addAttribute("usuario", usuario);
         return "home";
     }
 }
